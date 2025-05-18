@@ -1,0 +1,12 @@
+{
+    "name": "mongo-init",
+    "version": "1.0.0",
+    "main": "./init-mongo/init.js",
+    "scripts": {
+      "start": "node init.js"
+    },
+    "dependencies": {
+      "mongodb": "^6.4.0"
+    },
+      "type": "module"
+  }

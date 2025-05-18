@@ -1,0 +1,50 @@
+services:
+  mongodb:
+    # comunity server docker image
+    image: mongodb/mongodb-community-server
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      # MONGODB_INITDB_DATABASE: db
+      MONGODB_INITDB_ROOT_USERNAME: admin
+      MONGODB_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - mongo-data:/data/db # Persists data on the host in a named volume
+      - ./init-mongo/init.js:/docker-entrypoint-initdb.d/init.js:ro
+    networks:
+      - net
+    restart: unless-stopped
+
+  mongo-init:
+    build:
+      context: .
+      dockerfile: init-mongo/Dockerfile
+      # depends_on:
+      #   - mongodb
+      # networks:
+      #   - net
+      # entrypoint: ["sleep", "infinity"]
+      # # Allows you to exec into this container and run the init script
+      # restart: unless-stopped
+
+# MongoDB CLI
+  mongosh:
+    image: alpine/mongosh:2.0.2
+    container_name: mongosh
+    depends_on:
+      - mongodb
+    networks:
+      - net
+    entrypoint: ["sleep", "infinity"]
+    # Allows you to exec into this container and run mongosh
+    restart: unless-stopped
+
+# define data volume
+volumes:
+  mongo-data:
+
+# define network service
+networks:
+  net:
+    driver: bridge
