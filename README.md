@@ -44,9 +44,9 @@ This project is focused on working with MongoDB, a NoSQL database, to manage and
    ```
    node init-mongo init.js
    ```
-3. Access the MongoDB CLI:
+3. Connect to MongoDB CLI via Mongosh:
    ```
-   docker exec -it mongosh mongosh "mongodb://admin:admin@localhost:27017/db?authSource=db"
+   docker exec -it mongosh mongosh "mongodb://admin:admin@localhost:27017/db?authSource=admin"
    ```
 3. Verify the initialization
    ```
