@@ -21,19 +21,19 @@ async function run() {
 
     // Create user
     // Check if the user already exists
-    const existingUsers = await db.command({ usersInfo: "db" });
+    // const existingUsers = await db.command({ usersInfo: "db" });
 
-    if (existingUsers.users.length === 0) {
-      // Create the user if it doesn't exist
-      await db.command({
-        createUser: "db",
-        pwd: "db",
-        roles: [{ role: "readWrite", db: "db" }],
-      });
-      console.log("User created successfully");
-    } else {
-      console.log('User "db" already exists');
-    }
+    // if (existingUsers.users.length === 0) {
+    //   // Create the user if it doesn't exist
+    //   await db.command({
+    //     createUser: "db",
+    //     pwd: "db",
+    //     roles: [{ role: "readWrite", db: "db" }],
+    //   });
+    //   console.log("User created successfully");
+    // } else {
+    //   console.log('User "db" already exists');
+    // }
 
     // Drop existing collections to ensure a clean state
     const collections = [
@@ -49,8 +49,7 @@ async function run() {
     ];
 
     await Promise.all(
-      collections.map((name) =>
-        db
+      collections.map((name) => db
           .collection(name)
           .drop()
           .catch(() => {})
