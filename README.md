@@ -50,6 +50,7 @@ This project is focused on working with MongoDB, a NoSQL database, to manage and
    ```
 3. Verify the initialization
    ```
+   show dbs
    use db
    db.collection.find();
    ```
