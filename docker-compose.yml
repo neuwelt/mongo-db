@@ -11,22 +11,11 @@ services:
       MONGODB_INITDB_ROOT_PASSWORD: admin
     volumes:
       - mongo-data:/data/db # Persists data on the host in a named volume
-      - ./init-mongo/init.js:/docker-entrypoint-initdb.d/init.js:ro
+      - ./init.js:/docker-entrypoint-initdb.d/init.js:ro
     networks:
       - net
     restart: unless-stopped
 
-  mongo-init:
-    build:
-      context: .
-      dockerfile: init-mongo/Dockerfile
-      # depends_on:
-      #   - mongodb
-      # networks:
-      #   - net
-      # entrypoint: ["sleep", "infinity"]
-      # # Allows you to exec into this container and run the init script
-      # restart: unless-stopped
 
 # MongoDB CLI
   mongosh:
