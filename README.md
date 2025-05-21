@@ -43,6 +43,7 @@ This project is focused on working with MongoDB, a NoSQL database, to manage and
 2. Run db initialization scripts:
    ```
    node init-mongo init.js
+   node create.mongodb.js
    ```
 3. Connect to MongoDB CLI via Mongosh:
    ```
